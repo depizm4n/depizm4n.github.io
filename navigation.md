@@ -1,6 +1,6 @@
-# 記録
+# Sommer Imperium
 
-[<i class="fas fa-home"></i> Sommer Imperium](index.md)
+[<i class="fas fa-home"></i> Home](index.md)
 
 [トピック]()
 
