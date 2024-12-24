@@ -1,4 +1,4 @@
-# IT・テクノロジー
+# 設計
 
 ### Prisma
 
@@ -80,6 +80,7 @@
 ### Terraform
 ### Rust
 
-- [SQL](./sql/index.md)
-- [LPICレベル1](./lpic_level1/index.md)
-- [設計](./design/index.md)
+
+## アンチパターン
+- [Tainted State](design_tainted_state.md)
+- [Infiltrated Parameters](design_inflitrated_parameters.md)
