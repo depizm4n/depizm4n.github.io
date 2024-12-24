@@ -4,8 +4,9 @@
 
 [トピック]()
 
-* [01. TypeScript学習メモ](typescript1.md)
-* [02. SQL学習メモ](sql1.md)
-* [03. LPIC学習メモ](lpic1.md)
+* [01. IT・テクノロジー](./it/index.md)
+* [02. 学習方法]()
+* [03. 健康]()
+* [04. ラテン語]()
 
 [gimmick:theme](cosmo)
