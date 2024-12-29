@@ -4,6 +4,33 @@
 このため、 `IN` や `LIKE` のような1行の性質だけを調べる述語と比較して、  
 高次元な状況を扱うことができる。
 
+## マッチしないデータを取得する。
+```
+次の出席(Meeting)テーブルについて、各会議で参加していないメンバーを求める。
+```
+
+|PARTY|NAME|
+|:--|:--|
+|1st|Alice|
+|1st|Bob|
+|2st|Charlie|
+|3st|Dave|
+
+それぞれの会議で全員参加したと仮定したデータを作成し、  
+そこからテーブルのデータを除外すればよい。
+
+```sql
+SELECT M1.PARTY,
+       M1.NAME
+  FROM Meeting M1 CROSS JOIN M2
+ WHERE NOT EXISTS (
+    SELECT 1
+      FROM Meeting M3
+     WHERE M3.PARTY = M1.PARTY
+       AND M3.NAME  = M1.NAME 
+ );
+```
+
 ## 全称量子化への適用
 述語論理には2つの特別な述語があり、  
 全称量子化： すべての～を満たす    
@@ -99,3 +126,44 @@ SELECT DISTINCT T1.ID
 > ⚡  
 > `IN` 句で参照しない教科を事前に捨てている。  
 > これがない場合は `CASE` 句で数学・歴史以外の科目を拾いあげる必要がある。
+
+## 連続した空き座席を取得する
+```
+次のサウナ(Sauna)テーブルで、3人が隣接して座れる座席を求める。  
+（○は空き座席を表現している）
+```
+
+|ID|SEAT|
+|:--|:--|
+|1|○|
+|2|×|
+|3|○|
+|4|○|
+|5|○|
+|6|×|
+|7|×|
+
+まず長さ3の座席（開始のIDの終了のIDの差が2であるデータ）を作成する。
+
+```sql
+SELECT S1.ID START_ID,
+       S2.ID END_ID
+  FROM SAUNA S1, SAUNA S2
+ WHERE S2.ID = S1.ID + 2;
+```
+
+このデータに対し、 `START_ID ~ END_IDの間に×である座席はない` 条件を追加する。  
+（すべてのデータが '○' である条件の二重否定）
+
+```sql
+SELECT S1.ID START_ID,
+       S2.ID END_ID
+  FROM SAUNA S1, SAUNA S2
+ WHERE S2.ID = S1.ID + 2;
+ AND NOT EXISTS (
+  SELECT 1
+    FROM SAUNA S3
+   WHERE S3.ID BETWEEN S1.ID AND S2.ID
+     AND S3.ID = '×'
+ )
+```
