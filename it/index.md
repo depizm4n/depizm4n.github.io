@@ -18,7 +18,12 @@
 
 ### htmx
 
-### Svelte
+## Svelte
+JavaScriptフレームワーク。  
+HTMLタグにSvelteの構文を埋め込むことで、  
+Reactに近い記法のまま、記述量を減らすことができる。
+
+
 
 ### Bue.js
 ### Solid
@@ -33,7 +38,11 @@
 ### Vite
 ### Biome
 ### Quaser
-### Tailwind css
+
+## Tailwind css
+CSSフレームワーク。  
+ユーティリティファーストで、Bootstrapと異なりマルチクラスの記述が要請される。
+
 ### Daisy UI
 ### Playweight
 ### Storybook
